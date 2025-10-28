@@ -1,5 +1,5 @@
 const {DataTypes} = require('sequelize');
-const bdd = require('./../../helper/connexion.js');
+const {bdd} = require('./../../helper/connexion.js');
 
 const User = bdd.define('User',{
     email: {
