@@ -1,0 +1,24 @@
+{
+  "name": "4-iw-nodejs",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/training-dev-fr/4-IW-nodejs#readme",
+  "bugs": {
+    "url": "https://github.com/training-dev-fr/4-IW-nodejs/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/training-dev-fr/4-IW-nodejs.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node ./server.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
