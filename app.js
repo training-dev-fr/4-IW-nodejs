@@ -1,21 +1,8 @@
 const express = require('express');
-
+const userRouter = require('./module/user/user.route.js');
 const app = express();
 
-// app.use('/Product',() => {
-//     console.log("Route product")
-// });
 
-// app.use('/User',() => {
-//     console.log("Route user")
-// });
-
-const router = express.Router();
-
-router.get('/User',() => {
-    console.log("Route getuser")
-});
-
-app.use(router);
+app.use('/User',userRouter);
 
 module.exports = app;
