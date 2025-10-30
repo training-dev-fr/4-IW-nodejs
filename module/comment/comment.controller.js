@@ -1,10 +1,10 @@
-const Post = require("../post/post.model");
-const User = require("./user.model")
+const User = require("../user/user.model");
+const Comment = require("./comment.model")
 
 exports.getAll = async (req, res) => {
     try {
-        let userList = await User.findAll({attributes: {exclude: ['password']}});
-        res.status(200).json(userList);
+        let commentList = await Comment.findAll();
+        res.status(200).json(commentList);
     } catch (e) {
         res.status(400).json(e.message);
     }
@@ -12,13 +12,18 @@ exports.getAll = async (req, res) => {
 
 exports.getById = async (req, res) => {
     try {
-        let user = await User.findOne({
+        let comment = await Comment.findOne({
             where: {
                 id: req.params.id
             },
-            include: [Post]
+            include: [{
+                model: User,
+                attributes: {
+                    exclude: ["password"]
+                }
+            }]
         });
-        res.status(200).json(user);
+        res.status(200).json(comment);
     } catch (e) {
         res.status(400).json(e.message);
     }
@@ -26,11 +31,12 @@ exports.getById = async (req, res) => {
 
 exports.create = async (req, res) => {
     try {
-        let user = await User.create({
-            email: req.body.email,
-            password: req.body.password
+        let comment = await Comment.create({
+            message: req.body.message,
+            userId: req.body.userId,
+            postId: req.body.postId
         });
-        res.status(201).json(user);
+        res.status(201).json(comment);
     } catch (e) {
         res.status(400).json(e.message);
     }
@@ -38,14 +44,14 @@ exports.create = async (req, res) => {
 
 exports.update = async (req, res) => {
     try {
-        let user = await User.update({
-            email: req.body.email
+        let comment = await Comment.update({
+            message: req.body.message
         }, {
             where: {
                 id: req.params.id
             }
         });
-        res.status(201).json(user);
+        res.status(201).json(comment);
     } catch (e) {
         res.status(400).json(e.message);
     }
@@ -53,12 +59,12 @@ exports.update = async (req, res) => {
 
 exports.delete =  async (req, res) => {
     try {
-        let user = await User.destroy({
+        let comment = await Comment.destroy({
             where: {
                 id: req.params.id
             }
         });
-        res.status(200).json(user);
+        res.status(200).json(comment);
     } catch (e) {
         res.status(400).json(e.message);
     }

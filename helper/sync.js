@@ -1,7 +1,8 @@
 const {bdd} = require('./connexion.js');
-const User = require('./../module/user/user.model.js');
+const associate = require('./associate.js');
 
 const sync = async () => {
+    await associate();
     await bdd.sync({force: true});
 }
 
